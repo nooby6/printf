@@ -12,11 +12,12 @@ int _printf(const char *format, ...)
 {
     va_list args;
     int printed_chars = 0;
-    int i = 0;
+    int i, j;
+    char *str;
 
     va_start(args, format);
 
-    while (format && format[i])
+    for (i = 0; format && format[i]; i++)
     {
         if (format[i] == '%')
         {
@@ -26,48 +27,34 @@ int _printf(const char *format, ...)
             if (format[i] == 'c')
             {
                 char c = va_arg(args, int);
-                printed_chars += _putchar(c);
+                printed_chars += write(1, &c, 1);
             }
             else if (format[i] == 's')
             {
-                char *str = va_arg(args, char *);
+                str = va_arg(args, char *);
                 if (!str)
                     str = "(null)";
-                int j = 0;
-                while (str[j])
+                for (j = 0; str[j]; j++)
                 {
-                    printed_chars += _putchar(str[j]);
-                    j++;
+                    printed_chars += write(1, &str[j], 1);
                 }
             }
             else if (format[i] == '%')
             {
-                printed_chars += _putchar('%');
+                printed_chars += write(1, "%", 1);
             }
             else
             {
-                printed_chars += _putchar('%');
-                printed_chars += _putchar(format[i]);
+                printed_chars += write(1, "%", 1);
+                printed_chars += write(1, &format[i], 1);
             }
         }
         else
         {
-            printed_chars += _putchar(format[i]);
+            printed_chars += write(1, &format[i], 1);
         }
-        i++;
     }
 
     va_end(args);
     return printed_chars;
-}
-
-/**
- * _putchar - Write a character to standard output
- * @c: The character to print
- *
- * Return: The number of characters printed
- */
-int _putchar(char c)
-{
-    return write(1, &c, 1);
 }
