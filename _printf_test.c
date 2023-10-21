@@ -7,6 +7,7 @@
  *
  * Return: Always 0
  */
+#ifdef TEST
 int main(void)
 {
 	int chars_printed;
@@ -18,3 +19,4 @@ int main(void)
 	printf("%s\n", "group_project");/*Print a string using %s*/
 	return (0);
 }
+#endif
