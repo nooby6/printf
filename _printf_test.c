@@ -8,7 +8,7 @@
  * Return: Always 0
  */
 #ifdef TEST
-int main(void)
+/*int main(void)*/
 {
 	int chars_printed;
 	/*Call _printf to get the count of characters printed*/
