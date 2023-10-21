@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "main.h"
 
 /**
@@ -11,8 +12,11 @@ int main(void)
     int len;
     unsigned int ui;
     void *addr;
-
+    {   
     len = _printf("Audrine and Samuel custom printf!\n");
+    printf("Length: [%dd]\n", len);
+    return (0);
+    }
     ui = (unsigned int)1024;
     addr = (void *)0x7ffe637541f0;
 
